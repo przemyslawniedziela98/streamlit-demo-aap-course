@@ -158,15 +158,7 @@ def display_students_tab(
     year_range: tuple[int, int]
 ) -> None:
     """Displays data and visualizations for the 'Students' tab."""
-    data_filtered = {
-        'stem_data': filter_data(data['stem_data'], selected_regions),
-        'students_per_10k': filter_data(data['students_per_10k'], selected_regions),
-        'graduates_per_10k': filter_data(data['graduates_per_10k'], selected_regions),
-        'masters_graduates': filter_data(data['masters_graduates'], selected_regions),
-        'foreigners': filter_data(data['foreigners'], selected_regions), 
-        'scholarships': filter_data(data['scholarships'], selected_regions), 
-    }
-    
+    data_filtered = {key: filter_data(value, selected_regions) for key, value in data.items()}
 
     if data_filtered['stem_data'].shape[0] > 0:
         display_metrics(
